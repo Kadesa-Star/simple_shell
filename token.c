@@ -7,26 +7,20 @@
 char **_tok(const char *comm)
 {
 	size_t n = 0;
-	char **toks;
-	char *tok;
+	char **toks, *tok, *commdup;
 	size_t maxtok;
-	char *commdup;
 
 	maxtok	= LEN;
-
 	toks = malloc((maxtok + 1) * sizeof(char *));
-
 	while (toks == NULL)
 	{
 		perror("Token Error");
 		exit(EXIT_FAILURE);
 	}
-
 	for (n = 0; n < maxtok; n++)
 	{
 		toks[n] = NULL;
 	}
-
 	commdup = strdup(comm);
 	if (commdup == NULL)
 	{
@@ -36,7 +30,6 @@ char **_tok(const char *comm)
 
 	tok = strtok(commdup, " ");
 	n = 0;
-
 	while (tok && n < maxtok)
 	{
 		toks[n++] = strdup(tok);
@@ -49,9 +42,7 @@ char **_tok(const char *comm)
 
 		tok = strtok(NULL, " ");
 	}
-
 	free(commdup);
 	toks[n] = NULL;
-
 	return (toks);
 }

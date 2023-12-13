@@ -1,7 +1,7 @@
 #include "shellc.h"
 /**
  * exect - function that executes the command
- * @comm: pointer to string
+ * @argms: pointer to string
  */
 void exect(const char *argms)
 {
