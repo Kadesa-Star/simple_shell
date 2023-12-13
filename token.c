@@ -21,25 +21,25 @@ char **_tok(const char *comm)
 	{
 		toks[n] = NULL;
 	}
-	commdup = strdup(comm);
+	commdup = malloc(_strlen(comm) + 1);
 	if (commdup == NULL)
 	{
-		perror("duplication error");
+		perror("allocation error");
 		exit(EXIT_FAILURE);
 	}
-
+	_strcpy(commdup, comm);
 	tok = strtok(commdup, " ");
 	n = 0;
-	while (tok && n < maxtok)
+	while (tok != NULL && n < maxtok)
 	{
-		toks[n++] = strdup(tok);
-
-		if (toks[n - 1] == NULL)
+		toks[n] = malloc(_strlen(tok) + 1);
+		while (toks[n] == NULL)
 		{
-			perror("dup error");
+			perror("allocation error");
 			exit(EXIT_FAILURE);
 		}
-
+		_strcpy(toks[n], tok);
+		n++;
 		tok = strtok(NULL, " ");
 	}
 	free(commdup);

@@ -24,5 +24,8 @@ void sPrompt(void);
 void _sPrint(const char *str);
 void exect(const char *argms);
 char *usr_inpt(void);
+ssize_t new_line(const char *str);
+char *_strcpy(char *dest, const char *src);
+size_t _strlen(const char *str);
 
 #endif

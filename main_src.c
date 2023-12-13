@@ -13,7 +13,7 @@ int main(void)
 		input = usr_inpt();
 		if (!input)
 		{
-			printf("\n");
+			_sPrint("\n");
 			exit(EXIT_SUCCESS);
 		}
 		exect(input);

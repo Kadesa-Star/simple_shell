@@ -7,20 +7,17 @@ char *usr_inpt(void)
 {
 	char *comm = NULL;
 	size_t buff = 0;
+	ssize_t readbyts;
 
-	if (getline(&comm, &buff, stdin) == -1)
+	readbyts = getline(&comm, &buff, stdin);
+
+	if (readbyts == -1)
 	{
-		if (feof(stdin))
-		{
-			_sPrint("\n");
-			exit(EXIT_SUCCESS);
-		}
-		else
-		{
-			perror("get error");
-			exit(EXIT_FAILURE);
-		}
+		_sPrint("\n");
+		exit(EXIT_SUCCESS);
 	}
-	comm[strcspn(comm, "\n")] = '\0';
+
+	comm[readbyts - 1] = '\0';
+
 	return (comm);
 }
