@@ -7,7 +7,7 @@ int main(void)
 {
 	char *input;
 
-	while (true)
+	while (1)
 	{
 		sPrompt();
 		input = usr_inpt();

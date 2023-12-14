@@ -7,13 +7,29 @@ void exect(const char *argms)
 {
 	pid_t cPid;
 	char **args;
+	int stat;
 
-	args = _tok(argms);
 
+	args = malloc(2 * sizeof(char *));
+	if (args == NULL)
+	{
+		perror("Allocation error");
+		exit(EXIT_FAILURE);
+	}
+	args[0] = _strcpy(argms);
+	if (args[0] == NULL)
+	{
+		perror("Allocation Error");
+		free(args);
+		exit(EXIT_FAILURE);
+	}
+	args[1] = NULL;	
 	cPid = fork();
 	if (cPid == -1)
 	{
-		perror("error forking");
+		perror("Forking errror");
+		free(args[0]);
+		free(args);
 		exit(EXIT_FAILURE);
 	}
 
@@ -21,14 +37,16 @@ void exect(const char *argms)
 	{
 		if (execve(args[0], args, NULL) == -1)
 		{
-			perror("error");
+			perror("Error");
+			free(args[0]);
+			free(args);
 			exit(EXIT_FAILURE);
 		}
 
 	}
 	else
 	{
-		wait(NULL);
+		waitpid(cPid, &stat, 0);
 	}
 	free(args[0]);
 	free(args);
