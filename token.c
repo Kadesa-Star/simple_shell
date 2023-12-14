@@ -7,35 +7,38 @@
 char **_tok(const char *comm)
 {
 	size_t n = 0;
-	char **toks, *tok, *commdup;
-	size_t maxtok;
+	char **toks = NULL, *tok, *commdup;
 
-	maxtok	= LEN;
-	toks = malloc((maxtok + 1) * sizeof(char *));
+	toks = malloc(sizeof(char *));
 	while (toks == NULL)
 	{
 		perror("Token Error");
 		exit(EXIT_FAILURE);
 	}
-	for (n = 0; n < maxtok; n++)
-	{
-		toks[n] = NULL;
-	}
 	commdup = malloc(_strlen(comm) + 1);
-	if (commdup == NULL)
+	while (commdup == NULL)
 	{
 		perror("allocation error");
+		free(toks);
 		exit(EXIT_FAILURE);
 	}
 	_strcpy(commdup, comm);
 	tok = strtok(commdup, " ");
-	n = 0;
-	while (tok != NULL && n < maxtok)
+	while (tok != NULL)
 	{
+		toks = realloc(toks, (n + 2) * sizeof(char *));
+		while (toks == NULL)
+		{
+			perror("reallocation error");
+			free(commdup);
+			exit(EXIT_FAILURE);
+		}
 		toks[n] = malloc(_strlen(tok) + 1);
-		while (toks[n] == NULL)
+		if (toks[n] == NULL)
 		{
 			perror("allocation error");
+			free(commdup);
+			free(toks);
 			exit(EXIT_FAILURE);
 		}
 		_strcpy(toks[n], tok);
