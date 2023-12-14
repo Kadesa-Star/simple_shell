@@ -3,51 +3,31 @@
  * exect - function that executes the command
  * @argms: pointer to string
  */
-void exect(const char *argms)
+void exect(const char *comm)
 {
 	pid_t cPid;
-	char **args;
-	int stat;
+	char *args[2];
 
+	args[0] = (char *)comm;
+	args[1] = NULL;
 
-	args = malloc(2 * sizeof(char *));
-	if (args == NULL)
-	{
-		perror("Allocation error");
-		exit(EXIT_FAILURE);
-	}
-	args[0] = _strcpy(argms);
-	if (args[0] == NULL)
-	{
-		perror("Allocation Error");
-		free(args);
-		exit(EXIT_FAILURE);
-	}
-	args[1] = NULL;	
 	cPid = fork();
 	if (cPid == -1)
 	{
-		perror("Forking errror");
-		free(args[0]);
-		free(args);
+		perror("Forking error");
 		exit(EXIT_FAILURE);
 	}
-
-	if (cPid == 0)
+	else if (cPid == 0)
 	{
-		if (execve(args[0], args, NULL) == -1)
+
+		if (execve(comm, args, NULL) == -1)
 		{
-			perror("Error");
-			free(args[0]);
-			free(args);
+			perror("Executio error");
 			exit(EXIT_FAILURE);
 		}
-
 	}
 	else
 	{
-		waitpid(cPid, &stat, 0);
+		wait(NULL);
 	}
-	free(args[0]);
-	free(args);
 }

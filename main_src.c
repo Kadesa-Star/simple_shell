@@ -5,19 +5,19 @@
  */
 int main(void)
 {
-	char *input;
+	char command[240];
 
-	while (1)
+	while (true)
 	{
 		sPrompt();
-		input = usr_inpt();
-		if (!input)
+		if (usr_inpt(command) == -1)
 		{
-			_sPrint("\n");
-			exit(EXIT_SUCCESS);
+			break;
 		}
-		exect(input);
-		free(input);
+		if (_strlen(command) > 0)
+		{
+			exect(command);
+		}
 	}
 	return (0);
 }

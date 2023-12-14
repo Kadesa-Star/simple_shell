@@ -16,15 +16,16 @@
 /**
  * these are my prototypes
  */
-char **_tok(const char *comm);
 int main(void);
+int usr_inpt(char *command);
+void  rm_newln(char *stri, ssize_t ln);
 void sPrompt(void);
 void _sPrint(const char *str);
 void exect(const char *argms);
-char *usr_inpt(void);
-ssize_t new_line(const char *str);
+/* ssize_t new_line(const char *str);*/
 char *_strcpy(char *dest, const char *src);
 size_t _strlen(const char *str);
 int is_whitespace(char c);
+char *_strdup(const char *str);
 
 #endif

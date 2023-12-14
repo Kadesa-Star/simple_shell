@@ -29,3 +29,25 @@ char *_strcpy(char *dest, const char *src)
 	dest[n] = '\0';
 	return (dest);
 }
+/**
+ * _strdup - to duplicate a string
+ * @str: pointer to the strin
+ * Return: duplicate
+ */
+char *_strdup(const char *str)
+{
+	size_t len = _strlen(str);
+	char *dup_st;
+	size_t j;
+
+	dup_st = malloc(len + 1);
+	if (dup_st == NULL)
+	{
+		exit(EXIT_FAILURE);
+	}
+	for (j = 0; j <= len; j++)
+	{
+		dup_st[j] = str[j];
+	}
+	return (dup_st);
+}

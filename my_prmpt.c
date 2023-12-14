@@ -4,6 +4,13 @@
  */
 void sPrompt(void)
 {
-	_sPrint("StarsShell$ ");
-	fflush(stdout);
+	if (isatty(STDIN_FILENO))
+	{
+		_sPrint("StarsShell$ ");
+		fflush(stdout);
+	}
+	else
+	{
+
+	}
 }
