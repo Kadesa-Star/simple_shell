@@ -22,6 +22,10 @@ char *_strcpy(char *dest, const char *src)
 {
 	size_t n;
 
+	if (src == NULL)
+	{
+		return (dest);
+	}
 	for (n = 0; src[n] != '\0'; n++)
 	{
 		dest[n] = src[n];
@@ -43,7 +47,8 @@ char *_strdup(const char *str)
 	dup_st = malloc(len + 1);
 	if (dup_st == NULL)
 	{
-		exit(EXIT_FAILURE);
+		perror("Error memory allocation");
+		return (NULL);
 	}
 	for (j = 0; j <= len; j++)
 	{

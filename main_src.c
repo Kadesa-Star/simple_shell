@@ -6,16 +6,22 @@
 int main(void)
 {
 	char command[240];
+	int int_mode;
 
+	int_mode = isatty(STDIN_FILENO);
 	while (true)
 	{
-		sPrompt();
+		if (int_mode)
+		{
+			sPrompt();
+		}
 		if (usr_inpt(command) == -1)
 		{
 			break;
 		}
 		if (_strlen(command) > 0)
 		{
+			rm_newln(command, _strlen(command));
 			exect(command);
 		}
 	}

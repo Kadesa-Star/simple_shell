@@ -1,7 +1,7 @@
 #include "shellc.h"
 /**
  * exect - function that executes the command
- * @argms: pointer to string
+ * @comm: pointer to string
  */
 void exect(const char *comm)
 {
@@ -22,12 +22,13 @@ void exect(const char *comm)
 
 		if (execve(comm, args, NULL) == -1)
 		{
-			perror("Executio error");
+			perror("Execution error");
 			exit(EXIT_FAILURE);
 		}
 	}
 	else
 	{
 		wait(NULL);
+		fflush(stdout);
 	}
 }

@@ -14,17 +14,14 @@ int usr_inpt(char *command)
 	if (readbyts == -1 && j == 0)
 	{
 		_sPrint("\n");
-		free(comm);
-		exit(EXIT_SUCCESS);
-	}
-	else if (readbyts == -1)
-	{
 		perror("Error reading input");
-		free(comm);
-		exit(EXIT_FAILURE);
+		return (-1);
 	}
-	rm_newln(comm, readbyts);
-	_strcpy(command, comm);
+	else
+	{
+		rm_newln(comm, readbyts);
+		_strcpy(command, comm);
+	}
 	free(comm);
 	return (readbyts);
 }

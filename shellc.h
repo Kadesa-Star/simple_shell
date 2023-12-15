@@ -1,9 +1,7 @@
 #ifndef SHELLC_H
 #define SHELLC_H
 
-/**
- * these are my header files
- */
+/* these are my header files */
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,9 +11,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-/**
- * these are my prototypes
- */
+/* these are my prototypes */
 int main(void);
 int usr_inpt(char *command);
 void  rm_newln(char *stri, ssize_t ln);
